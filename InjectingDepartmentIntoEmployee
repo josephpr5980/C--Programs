@@ -1,0 +1,47 @@
+using System;
+
+public class Program
+{
+    static void Main(string[] args)
+    {
+        IDepartment department = new Department("HR");
+        
+        Employee employee = new Employee(department);
+        employee.ShowDepartment();
+    }
+}
+
+public class Employee
+{
+    private IDepartment _department;
+    
+    public Employee(IDepartment department)
+    {
+       this._department  = department;
+    }
+    
+    public void ShowDepartment()
+    {
+        Console.WriteLine("Employee belongs to the Department: {0}",_department.GetDepartment());
+    }
+}
+
+public class Department : IDepartment
+{
+    private string _departmentname {get; set;}
+    
+    public Department(string departmentname)
+    {
+        this._departmentname = departmentname;
+    }
+    
+    public string GetDepartment()
+    {
+        return _departmentname;
+    }
+}
+
+public interface IDepartment
+{
+    string GetDepartment();
+}
