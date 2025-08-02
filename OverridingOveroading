@@ -1,0 +1,52 @@
+using System;
+
+public class Program
+{
+    static void Main(string[] args)
+    {
+        Employee employee = new Employee("Joseph","Kapra");
+        employee.ShowAddress();
+        
+        Manager manager = new Manager("Joe","Yapral");
+        manager.ShowAddress();
+        
+       manager.ShowAddress("ECIL");
+    }
+}
+
+public class Employee
+{
+    public string Name {get; set;}
+    public string Address {get; set;}
+    
+    public Employee(string name, string address)
+    {
+        this.Name = name;
+        this.Address = address;
+    }
+    
+    public virtual void ShowAddress()
+    {
+        Console.WriteLine("Employee Name is: {0}" ,Name );
+        Console.WriteLine("Emloyee Address is: {0}",Address);
+    }
+}
+
+public class Manager : Employee
+{
+    public Manager(string name, string address) : base(name, address)
+    {
+    }
+    
+    public override void ShowAddress()
+    {
+        Console.WriteLine("Manager Name is: {0}" ,Name);
+        Console.WriteLine("Manager Address is: {0}",Address);
+    }
+    
+    public void ShowAddress(string PermanentAddress)
+    {
+        Console.WriteLine("Manager Permanent Address is: {0}",PermanentAddress);
+        
+    }
+}
