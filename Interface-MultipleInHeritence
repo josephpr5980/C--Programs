@@ -1,0 +1,78 @@
+using System;
+
+public class Program
+{
+    static void Main(string[] args)
+    {
+        ICustomer silvercustomer = new SilverCustomer();
+        silvercustomer.Name = "Silver Customer";
+        silvercustomer.ProductAmount = 500;
+        Console.WriteLine(silvercustomer.GetDiscountRate());
+
+        ICustomer goldcustomer = new GoldCustomer();
+        goldcustomer.Name = "Gold Customer";
+        goldcustomer.ProductAmount = 500;
+        Console.WriteLine(goldcustomer.GetDiscountRate());
+
+        ICustomerWithInterest defaultcustoer = new DefaultCustomer();
+        defaultcustoer.Name = "Default Customer";
+        defaultcustoer.ProductAmount = 500;
+        Console.WriteLine(defaultcustoer.GetInstrestRate());
+    }
+}
+public interface ICustomer
+{
+    string Name {get; set;}
+    string Address {get; set;}
+    string ProductName {get;set;}
+    int ProductAmount {get; set;}
+    
+    int GetDiscountRate();
+}
+
+public interface ICustomerWithInterest : ICustomer
+{
+    int GetInstrestRate();
+}
+
+
+public abstract class Customer : ICustomer, ICustomerWithInterest
+{
+    public string Name {get; set;}
+    public string Address {get; set;}
+    public string ProductName {get;set;}
+    public int ProductAmount {get; set;}
+    
+    public abstract int GetDiscountRate();
+
+    public int GetInstrestRate()
+    {
+        return 30;
+    }
+
+    
+}
+public class GoldCustomer : Customer
+{
+    public override int GetDiscountRate()
+    {
+        return 20;
+    }
+}
+
+public class SilverCustomer : Customer
+{
+    public override int GetDiscountRate()
+    {
+        return 10;
+    }
+}
+
+public class DefaultCustomer : Customer
+{
+    public override int GetDiscountRate()
+    {
+        return 5;
+    } 
+}
+
