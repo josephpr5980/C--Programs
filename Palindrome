@@ -1,0 +1,28 @@
+using System;
+
+class PalindromeChecker
+{
+    static void Main()
+    {
+        Console.Write("Enter a string: ");
+        string input = Console.ReadLine();
+
+        // Normalize the string: remove spaces and convert to lowercase
+        string processed = input.Replace(" ", "").ToLower();
+
+        // Reverse the string
+        char[] charArray = processed.ToCharArray();
+        Array.Reverse(charArray);
+        string reversed = new string(charArray);
+
+        // Check if palindrome
+        if (processed == reversed)
+        {
+            Console.WriteLine("✅ It's a palindrome!");
+        }
+        else
+        {
+            Console.WriteLine("❌ Not a palindrome.");
+        }
+    }
+}
